@@ -23,47 +23,71 @@ class NaveEspacial {
         return nombre;
     }
     
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public int getCombustible(){
         return combustible;
     }
     
+    public void setCombustible(int combustible) {
+        if (combustible >= 0 && combustible <= 100) {
+            this.combustible = combustible;
+        } else {
+            System.out.println("Valor de combustible inválido");
+        }
+    }
+    
+    public int getConsumoDespegue() {
+        return consumoDespegue;
+    }
+
+    public void setConsumoDespegue(int consumoDespegue) {
+        if (consumoDespegue >= 0) {
+            this.consumoDespegue = consumoDespegue;
+        } else {
+            System.out.println("Consumo de despegue inválido");
+        }
+    }
+    
     public void mostrarEstado(){
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Combustible: " + combustible);
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Combustible: " + getCombustible());
     }
     
     public void despegar() {
-        combustible -= consumoDespegue;
-        System.out.println("Nave despegada. Combustible actual: " + combustible + " unidades");
+        setCombustible(getCombustible() - consumoDespegue);
+        System.out.println("Nave despegada. Combustible actual: " + getCombustible() + " unidades");
     }
     
-    public void avanzar(int distancia){
+    public void avanzar(int distancia) {
         int consumoPorUnidad = 1;
         int consumoViaje = distancia * consumoPorUnidad;
-        int totalNecesario = consumoDespegue + consumoViaje;
+        int totalNecesario = getConsumoDespegue() + consumoViaje;
 
-        if (combustible >= totalNecesario){
-            despegar();             
-            combustible -= consumoViaje; 
-            System.out.println("La nave avanzó " + distancia + " unidades. Combustible restante: " + combustible);
+        if (getCombustible() >= totalNecesario) {
+            despegar(); // resta consumoDespegue
+            setCombustible(getCombustible() - consumoViaje); // resta avance
+            System.out.println("La nave avanzó " + distancia + " unidades. Combustible restante: " + getCombustible());
         } else {
-            int combustibleFaltante = totalNecesario - combustible;
+            int combustibleFaltante = totalNecesario - getCombustible();
             System.out.println("No hay suficiente combustible para despegar y avanzar " + distancia + " unidades. "
                     + "Faltan " + combustibleFaltante + " unidades de combustible.");
-        }       
+        }
     }
     
-    public void recargarCombustible(int cantidad){
-        int combustibleMaximo = 100;
-        if (cantidad >0){
-             if ((cantidad + combustible) <= combustibleMaximo){
-                combustible += cantidad;
-                System.out.println("Nave recargada con: " + cantidad + ". Combustible actual: " + combustible);
+    public void recargarCombustible(int cantidad) {
+        if (cantidad > 0) {
+            int nuevoCombustible = getCombustible() + cantidad;
+            if (nuevoCombustible <= 100) {
+                setCombustible(nuevoCombustible);
+                System.out.println("Nave recargada con: " + cantidad + ". Combustible actual: " + getCombustible());
             } else {
                 System.out.println("No se puede recargar por encima de la capacidad de 100 unidades");
             }
         } else {
-            System.out.println("No se puede ingresar un numero negativo para la carga de combustible");
+            System.out.println("No se puede ingresar un número negativo para la carga de combustible");
         }
     }
 }
