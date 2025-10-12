@@ -1,9 +1,5 @@
 package tp4;
 
-/**
- *
- * @author djgri
- */
 public class Empleado {
     private int id;
     private String nombre;
@@ -36,15 +32,15 @@ public class Empleado {
     public void actualizarSalario(double porcentajeDeAumento){
         double montoAumento = this.salario * (porcentajeDeAumento / 100);
         this.salario+= montoAumento;
-        System.out.println("Se ha actualizado el salario de " + this.nombre + ". El aumento fue de $" + montoAumento + ". El salariuo nuevo es de $" + this.salario);
+        System.out.println("Se ha actualizado el salario de " + this.nombre + 
+                ". El aumento fue de $" + montoAumento + 
+                ". El salariuo nuevo es de $" + this.salario);
     }
     
     public void actualizarSalario(int cantidadAumento){
         double salarioSinAumento = this.salario;
         this.salario += cantidadAumento;
-
         double porcentajeDeAumento = ((this.salario - salarioSinAumento) / salarioSinAumento) * 100;
-
         System.out.println("Se ha actualizado el salario de " + this.nombre + 
                            ". El aumento fue de " + String.format("%.2f", porcentajeDeAumento) + "%" +
                            ". El salario nuevo es de $" + this.salario);

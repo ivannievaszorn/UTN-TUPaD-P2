@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package tp4;
 
-/**
- *
- * @author djgri
- */
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
@@ -21,16 +13,16 @@ public class main {
         System.out.println("Total empleados creados: " + Empleado.mostrarTotalEmpleados());
                
         e1.mostrarEstado();
-        e1.actualizarSalario(8.0); // Aumentamos 8% el salario de e1
-        e1.mostrarEstado(); // Verificamos aumento
+        e1.actualizarSalario(8.0); // Aumento 8% salario
+        e1.mostrarEstado();
         e2.mostrarEstado();
-        e2.actualizarSalario(68000);
+        e2.actualizarSalario(68000); // Aumento 68000
         e2.mostrarEstado();
         e3.mostrarEstado();
-        e3.actualizarSalario(5.0);
+        e3.actualizarSalario(5.0); // Aumento 5% salario
         e3.mostrarEstado();
         e4.mostrarEstado();
-        e4.actualizarSalario(45000);
+        e4.actualizarSalario(45000);  // Aumento 45000
         e4.mostrarEstado();
         
     }        
