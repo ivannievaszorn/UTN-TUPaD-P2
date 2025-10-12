@@ -48,8 +48,7 @@ class NaveEspacial {
     }
     
     public void mostrarEstado(){
-        System.out.println("Nombre: " + getNombre());
-        System.out.println("Combustible: " + getCombustible());
+        System.out.println(this.toString());
     }
     
     public void despegar() {
@@ -86,4 +85,12 @@ class NaveEspacial {
             System.out.println("No se puede ingresar un número negativo para la carga de combustible");
         }
     }
+    
+        @Override
+        public String toString() {
+            return "---- Estado de la Nave ----\n" +
+                   "Nombre: " + nombre + "\n" +
+                   "Combustible: " + combustible + " unidades\n" +
+                   "----------------------------";
+        }
 }
