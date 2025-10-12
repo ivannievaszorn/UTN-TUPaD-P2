@@ -2,11 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tp3;
-
-
-import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
+package tp3.punto5;
 
 class NaveEspacial {
     private String nombre;
@@ -90,18 +86,4 @@ class NaveEspacial {
             System.out.println("No se puede ingresar un número negativo para la carga de combustible");
         }
     }
-}
-
-
-public class Punto5 {
-    public static void main(String[] args) {
-        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
-        NaveEspacial nave1 = new NaveEspacial("Cassini", 50, 10);
-        
-        nave1.mostrarEstado();
-        nave1.avanzar(65);
-        nave1.recargarCombustible(25);
-        nave1.avanzar(65);
-        nave1.mostrarEstado();
-    }        
 }
