@@ -87,6 +87,8 @@ class NaveEspacial {
     }
     
         @Override
+        
+        
         public String toString() {
             return "---- Estado de la Nave ----\n" +
                    "Nombre: " + nombre + "\n" +
