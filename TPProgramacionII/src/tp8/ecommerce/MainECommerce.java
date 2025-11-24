@@ -4,40 +4,43 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
 public class MainECommerce {
+
     public static void main(String[] args) {
         // Configuración UTF-8
-        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));    
-        System.out.println("--- TP8: Parte 1 - E-Commerce y Interfaces ---");
+        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));      
+        // Crear cliente
+        Cliente cliente = new Cliente("Agustina Diaz", "agus@gmail.com");
 
-        // 1. Creación de entidades
-        Cliente cliente = new Cliente("Sofia Perez", "sofia.p@mail.com");
+        // Crear productos
+        Producto p1 = new Producto("Camisa", 100);
+        Producto p2 = new Producto("Pantalón", 200);
+
+        // Crear pedido
         Pedido pedido = new Pedido(cliente);
+        pedido.agregarProducto(p1);
+        pedido.agregarProducto(p2);
 
-        pedido.agregarProducto(new Producto("Laptop", 1200.00));
-        pedido.agregarProducto(new Producto("Mouse Inalámbrico", 25.00));
-        
-        System.out.println("Pedido inicial. Total: $" + pedido.calcularTotal());
+        System.out.println("\n--- Pedido inicial ---");
+        System.out.println("Total del pedido: $" + pedido.calcularTotal());
+        System.out.println("Estado: " + pedido.getEstado());
 
-        // 2. Pago con Tarjeta (Implementa Pago)
-        System.out.println("\n--- Pago con Tarjeta (Pago simple) ---");
-        Pago tarjeta = new TarjetaCredito("4567-XXXX");
-        
-        // Uso de Pago polimórfico
-        // El descuento se ignora ya que TarjetaCredito NO implementa PagoConDescuento
-        pedido.realizarPago(tarjeta, 0.0); 
-        
-        // 3. Notificación al cliente (Implementa Notificable)
-        pedido.cambiarEstado("ENVIADO");
+        // ------------------------
+        // Pago con PayPal con 10% de descuento
+        PayPal paypal = new PayPal("agus@gmail.com", 10);
+        System.out.println("\n--- Realizando pago con PayPal ---");
+        pedido.realizarPago(paypal);
 
-        // 4. Nuevo Pedido para demostrar Pago con Descuento
+        System.out.println("Estado final del pedido: " + pedido.getEstado());
+
+        // ------------------------
+        // Nuevo pedido con tarjeta de crédito (sin descuento)
         Pedido pedido2 = new Pedido(cliente);
-        pedido2.agregarProducto(new Producto("Auriculares Pro", 150.00));
-        
-        System.out.println("\n--- Pago con PayPal (PagoConDescuento) ---");
-        Pago payPal = new PayPal("sofia.p@mail.com");
-        
-        // Uso de Pago polimórfico que incluye descuento
-        pedido2.realizarPago(payPal, 15.00); 
-        pedido2.cambiarEstado("ENTREGADO");
+        pedido2.agregarProducto(new Producto("Zapatos", 150));
+        TarjetaCredito tarjeta = new TarjetaCredito("1234-5678-9012-3456");
+
+        System.out.println("\n--- Pedido con Tarjeta de Crédito ---");
+        System.out.println("Total del pedido: $" + pedido2.calcularTotal());
+        pedido2.realizarPago(tarjeta);
+        System.out.println("Estado final del pedido: " + pedido2.getEstado());
     }
 }

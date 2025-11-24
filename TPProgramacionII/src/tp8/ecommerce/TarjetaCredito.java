@@ -9,6 +9,6 @@ public class TarjetaCredito implements Pago {
 
     @Override
     public void procesarPago(double monto) {
-        System.out.println("💳 Procesando pago de $" + monto + " con Tarjeta de Crédito " + numeroTarjeta);
+        System.out.println("Procesando pago de $" + monto + " con Tarjeta de Crédito " + numeroTarjeta);
     }
 }

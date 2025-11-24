@@ -13,6 +13,6 @@ public class Cliente implements Notificable {
     // Implementación del contrato Notificable
     @Override
     public void notificar(String mensaje) {
-        System.out.println("🤖 Notificación a " + nombre + " (" + email + "): " + mensaje);
+        System.out.println("Notificación a " + nombre + " (" + email + "): " + mensaje);
     }
 }

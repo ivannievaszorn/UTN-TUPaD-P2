@@ -1,21 +1,23 @@
 package tp8.ecommerce;
 
-// Implementa la interfaz extendida
 public class PayPal implements PagoConDescuento {
     private String email;
+    private double porcentajeDescuento; // Porcentaje de descuento
 
-    public PayPal(String email) {
+    public PayPal(String email, double porcentajeDescuento) {
         this.email = email;
+        this.porcentajeDescuento = porcentajeDescuento;
     }
 
     @Override
     public void procesarPago(double monto) {
-        System.out.println("📧 Procesando pago de $" + monto + " con PayPal (" + email + ")");
+        System.out.println("Procesando pago de $" + monto + " con PayPal (" + email + ")");
     }
 
-    // Implementación del método de PagoConDescuento
     @Override
-    public void aplicarDescuento(double porcentaje) {
-        System.out.println("✅ Se aplica un descuento de $" + porcentaje + " por usar PayPal.");
+    public double aplicarDescuento(double monto) {
+        double montoFinal = monto - (monto * porcentajeDescuento / 100);
+        System.out.println("Se aplica un descuento de " + porcentajeDescuento + "% con PayPal. Monto final: $" + montoFinal);
+        return montoFinal;
     }
 }
